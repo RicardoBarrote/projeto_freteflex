@@ -20,6 +20,8 @@ public class ShippingController {
     public ResponseEntity<ShippingResponse> calculate(@RequestParam("type") String shippingType,
                                                       @RequestParam("distance") Double distance,
                                                       @RequestParam("weight") Double weight) {
-        return ResponseEntity.ok(new ShippingResponse(0.0));
+
+        Double calculate = shippingService.calculate(shippingType, distance, weight);
+        return ResponseEntity.ok(new ShippingResponse(calculate));
     }
 }
