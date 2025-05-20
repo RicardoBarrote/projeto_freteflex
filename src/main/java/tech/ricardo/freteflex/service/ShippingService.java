@@ -1,16 +1,21 @@
 package tech.ricardo.freteflex.service;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import tech.ricardo.freteflex.domain.ExpressShippingCalculator;
+import tech.ricardo.freteflex.domain.ShippingCalculator;
 import tech.ricardo.freteflex.domain.StandardShippingCalculator;
 
 @Service
 public class ShippingService {
 
-    private final StandardShippingCalculator standardShippingCalculator;
-    private final ExpressShippingCalculator expressShippingCalculator;
+    private final ShippingCalculator standardShippingCalculator;
+    private final ShippingCalculator expressShippingCalculator;
 
-    public ShippingService(StandardShippingCalculator standardShippingCalculator, ExpressShippingCalculator expressShippingCalculator) {
+    public ShippingService(@Qualifier("standardShippingCalculator")
+                           StandardShippingCalculator standardShippingCalculator,
+                           @Qualifier("expressShippingCalculator")
+                           ExpressShippingCalculator expressShippingCalculator) {
         this.standardShippingCalculator = standardShippingCalculator;
         this.expressShippingCalculator = expressShippingCalculator;
     }
